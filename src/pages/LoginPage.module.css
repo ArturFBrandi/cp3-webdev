@@ -1,0 +1,19 @@
+.page {
+  padding-top: clamp(64px, 12vw, 112px);
+  max-width: 420px;
+}
+
+.title {
+  font-size: clamp(28px, 5vw, 36px);
+  margin-bottom: 10px;
+}
+
+.description {
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+.form {
+  display: grid;
+  gap: 20px;
+}
