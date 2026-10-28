@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link, useParams } from 'react-router'
 import { ProjectsErrorState } from '@/components/projects/ProjectsErrorState'
 import { ButtonLink } from '@/components/ui/ButtonLink'
+import { ErrorState } from '@/components/ui/ErrorState'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { TagList } from '@/components/ui/TagList'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
@@ -31,7 +32,8 @@ export function ProjectDetailPage() {
   return (
     <article className={styles.page} aria-busy={isPending}>
       <Link className={styles.back} to="/projects">
-        ← {t('projectDetail.back')}
+        <span aria-hidden="true">← </span>
+        {t('projectDetail.back')}
       </Link>
       {isPending && <DetailSkeleton />}
       {error && <ProjectsErrorState error={error} onRetry={() => void refetch()} />}
@@ -55,8 +57,8 @@ function ProjectDetail({ repo }: { repo: Repo }) {
       <p className={styles.description}>{repo.description ?? t('projects.noDescription')}</p>
       <TagList tags={repo.topics} label={t('projects.topics')} />
       <div className={styles.links}>
-        <ButtonLink href={repo.htmlUrl} target="_blank" rel="noopener noreferrer">
-          {t('projects.viewOnGithub')} ↗
+        <ButtonLink href={repo.htmlUrl} target="_blank" rel="noopener noreferrer" arrow>
+          {t('projects.viewOnGithub')}
         </ButtonLink>
         {repo.homepage && (
           <ButtonLink
@@ -64,8 +66,9 @@ function ProjectDetail({ repo }: { repo: Repo }) {
             target="_blank"
             rel="noopener noreferrer"
             variant="ghost"
+            arrow
           >
-            {t('projects.website')} ↗
+            {t('projects.website')}
           </ButtonLink>
         )}
       </div>
@@ -76,7 +79,7 @@ function ProjectDetail({ repo }: { repo: Repo }) {
 
 function Readme({ repo }: { repo: Repo }) {
   const { t } = useTranslation()
-  const { data: markdown, isPending, isError } = useReadme(repo.name)
+  const { data: markdown, isPending, isError, refetch } = useReadme(repo.name)
   const skeleton = <Skeleton className={styles.skeletonBlock} />
 
   return (
@@ -85,7 +88,13 @@ function Readme({ repo }: { repo: Repo }) {
         {t('projectDetail.readme')}
       </h2>
       {isPending && skeleton}
-      {isError && <p className={styles.muted}>{t('projectDetail.readmeError')}</p>}
+      {isError && (
+        <ErrorState
+          title={t('projectDetail.readmeError')}
+          retryLabel={t('projects.errors.retry')}
+          onRetry={() => void refetch()}
+        />
+      )}
       {markdown === null && <p className={styles.muted}>{t('projectDetail.noReadme')}</p>}
       {markdown && (
         <Suspense fallback={skeleton}>
