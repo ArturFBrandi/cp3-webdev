@@ -1,0 +1,45 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  min-height: 240px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 22px;
+  margin-bottom: 14px;
+  overflow-wrap: anywhere;
+}
+
+.title a {
+  color: inherit;
+}
+
+.description {
+  color: var(--text);
+}
+
+.muted {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 18px;
+  font-size: 15px;
+  font-weight: 500;
+}
