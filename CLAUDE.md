@@ -74,7 +74,7 @@ src/types/        Shared types
 - One branch per piece of work, created from up-to-date `main`: `feature/<name>`, `fix/<name>`, `chore/<name>`, `test/<name>`, `perf/<name>`, `docs/<name>`.
 - Commits follow Conventional Commits, enforced by commitlint: `type(scope): imperative lower-case description`.
   - Types: `feat`, `fix`, `refactor`, `style`, `test`, `docs`, `chore`, `perf`, `build`, `ci`.
-  - Scopes: `setup`, `harness`, `layout`, `theme`, `i18n`, `routing`, `github`, `contact`, `auth`, `dashboard`, `perf`, `deps`, `docs`.
+  - Scopes: `setup`, `harness`, `layout`, `theme`, `i18n`, `routing`, `github`, `contact`, `auth`, `dashboard`, `perf`, `deps`, `docs`, `ci`.
 - Keep commits small and focused: one logical change each.
 - Finish a branch by opening a PR into `main` with `gh pr create`. Ask the user before pushing or opening the PR.
 
