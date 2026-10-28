@@ -10,3 +10,9 @@ export async function fetchFeaturedNames(): Promise<string[]> {
   if (error) throw new Error(`Could not load featured projects: ${error.message}`)
   return data.map((row) => row.repo_name)
 }
+
+/** Replaces the featured list (owner only, enforced by the database). */
+export async function saveFeaturedNames(names: string[]): Promise<void> {
+  const { error } = await getSupabase().rpc('set_featured_projects', { names })
+  if (error) throw new Error(`Could not save featured projects: ${error.message}`)
+}
