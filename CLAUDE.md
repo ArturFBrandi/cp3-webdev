@@ -35,7 +35,7 @@ src/components/ui/        Presentational primitives: Button, Card, Tag, Skeleton
 src/components/layout/    Header, Footer, ThemeToggle, LanguageSwitcher, ProtectedRoute
 src/components/sections/  Home page sections
 src/components/projects/  Project cards and grids
-src/hooks/        Custom hooks (TanStack Query wrappers, auth, theme, content)
+src/hooks/        Custom hooks (TanStack Query wrappers, auth, theme, content) + queryKeys.ts (all query keys)
 src/services/     The only place that calls fetch / Supabase / GitHub
 src/schemas/      Zod schemas (shared with api/)
 src/contexts/     Theme and Auth contexts

@@ -55,7 +55,7 @@ src/
     layout/          Header, Footer, ThemeToggle, LanguageSwitcher, ProtectedRoute
     sections/        Home page sections (Hero, Skills, Experience...)
     projects/        Project cards and grids
-  hooks/             Custom hooks (data fetching via TanStack Query, auth, theme)
+  hooks/             Custom hooks (data fetching via TanStack Query, auth, theme) and queryKeys.ts
   services/          API clients (GitHub, Supabase, contact)
   schemas/           Zod schemas, shared with api/
   contexts/          React contexts (theme, auth)
