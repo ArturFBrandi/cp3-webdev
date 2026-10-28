@@ -30,3 +30,10 @@ export function formatRelative(isoDate: string, locale: string, now = Date.now()
 export function formatTime(date: Date, locale: string): string {
   return new Intl.DateTimeFormat(locale, { hour: 'numeric', minute: '2-digit' }).format(date)
 }
+
+/** "Oct 28, 2026, 3:05 PM" / "28 de out. de 2026, 15:05". */
+export function formatDateTime(isoDate: string, locale: string): string {
+  return new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(
+    new Date(isoDate),
+  )
+}

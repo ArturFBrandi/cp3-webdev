@@ -1,0 +1,21 @@
+.summary {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 20px;
+}
+
+.skeleton {
+  height: 180px;
+  border-radius: var(--radius-lg);
+}
+
+.feedback {
+  margin-bottom: 20px;
+}
