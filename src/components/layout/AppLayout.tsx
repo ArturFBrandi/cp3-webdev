@@ -1,14 +1,11 @@
-import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Outlet, ScrollRestoration } from 'react-router'
 import styles from './AppLayout.module.css'
 import { Footer } from './Footer'
 import { Header } from './Header'
 
-interface AppLayoutProps {
-  children: ReactNode
-}
-
-export function AppLayout({ children }: AppLayoutProps) {
+/** Root route layout: everything renders inside the header/footer frame. */
+export function AppLayout() {
   const { t } = useTranslation()
 
   return (
@@ -18,9 +15,10 @@ export function AppLayout({ children }: AppLayoutProps) {
       </a>
       <Header />
       <main id="main" className={styles.main}>
-        {children}
+        <Outlet />
       </main>
       <Footer />
+      <ScrollRestoration />
     </>
   )
 }
