@@ -1,0 +1,26 @@
+.footer {
+  max-width: var(--max-width);
+  margin: var(--space-section) auto 0;
+  padding: 40px var(--gutter) 64px;
+  border-top: 1px solid var(--border);
+}
+
+.meta {
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.copy {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 16px;
+}

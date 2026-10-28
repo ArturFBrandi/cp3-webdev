@@ -1,0 +1,32 @@
+.group {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.option {
+  min-width: 40px;
+  min-height: 32px;
+  padding: 4px 10px;
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.option:hover {
+  color: var(--accent);
+}
+
+.option[aria-pressed='true'] {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
