@@ -1,0 +1,5 @@
+.center {
+  padding-top: clamp(64px, 12vw, 112px);
+  display: flex;
+  justify-content: center;
+}
