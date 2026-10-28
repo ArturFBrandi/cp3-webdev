@@ -17,19 +17,30 @@ export function isOwnerEmail(email: string | undefined): boolean {
 }
 
 export async function getSession(): Promise<Session | null> {
-  const { data, error } = await getSupabase().auth.getSession()
+  const supabase = await getSupabase()
+  const { data, error } = await supabase.auth.getSession()
   if (error) throw error
   return data.session
 }
 
 /** Calls `callback` on every sign-in/out; returns an unsubscribe function. */
 export function onSessionChange(callback: (session: Session | null) => void): () => void {
-  const { data } = getSupabase().auth.onAuthStateChange((_event, session) => callback(session))
-  return () => data.subscription.unsubscribe()
+  let unsubscribe: (() => void) | null = null
+  let cancelled = false
+  void getSupabase().then((supabase) => {
+    if (cancelled) return
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => callback(session))
+    unsubscribe = () => data.subscription.unsubscribe()
+  })
+  return () => {
+    cancelled = true
+    unsubscribe?.()
+  }
 }
 
 export async function signIn(email: string, password: string): Promise<Session> {
-  const { data, error } = await getSupabase().auth.signInWithPassword({ email, password })
+  const supabase = await getSupabase()
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password })
   if (error) {
     if (error.status === 400 || error.code === 'invalid_credentials')
       throw new InvalidCredentialsError()
@@ -39,6 +50,7 @@ export async function signIn(email: string, password: string): Promise<Session> 
 }
 
 export async function signOut(): Promise<void> {
-  const { error } = await getSupabase().auth.signOut()
+  const supabase = await getSupabase()
+  const { error } = await supabase.auth.signOut()
   if (error) throw error
 }

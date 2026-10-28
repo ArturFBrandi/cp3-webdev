@@ -2,7 +2,8 @@ import type { Message } from '@/types/messages'
 import { getSupabase } from './supabase'
 
 export async function fetchMessages(): Promise<Message[]> {
-  const { data, error } = await getSupabase()
+  const supabase = await getSupabase()
+  const { data, error } = await supabase
     .from('messages')
     .select('*')
     .order('created_at', { ascending: false })
@@ -20,7 +21,8 @@ export async function fetchMessages(): Promise<Message[]> {
 }
 
 export async function setMessageAnswered(id: string, answered: boolean): Promise<void> {
-  const { error } = await getSupabase()
+  const supabase = await getSupabase()
+  const { error } = await supabase
     .from('messages')
     .update({ answered, answered_at: answered ? new Date().toISOString() : null })
     .eq('id', id)

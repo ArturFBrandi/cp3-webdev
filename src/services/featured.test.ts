@@ -10,7 +10,9 @@ function mockQuery(result: { data: unknown; error: unknown }) {
   )
   const select = vi.fn<(columns: string) => { order: typeof order }>(() => ({ order }))
   const from = vi.fn<(table: string) => { select: typeof select }>(() => ({ select }))
-  vi.mocked(getSupabase).mockReturnValue({ from } as unknown as ReturnType<typeof getSupabase>)
+  vi.mocked(getSupabase).mockResolvedValue({ from } as unknown as Awaited<
+    ReturnType<typeof getSupabase>
+  >)
   return { from, select, order }
 }
 
