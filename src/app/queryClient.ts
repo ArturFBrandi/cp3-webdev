@@ -1,4 +1,6 @@
 import { QueryClient } from '@tanstack/react-query'
+import type { PersistQueryClientProvider } from '@tanstack/react-query-persist-client'
+import type { ComponentProps } from 'react'
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
 import { NotFoundError, RateLimitError } from '@/types/errors'
 
@@ -25,12 +27,12 @@ export const queryPersister = createSyncStoragePersister({
   key: 'portfolio-query-cache',
 })
 
-export const persistOptions = {
+export const persistOptions: ComponentProps<typeof PersistQueryClientProvider>['persistOptions'] = {
   persister: queryPersister,
   maxAge: 60 * MINUTE,
   buster: 'v1',
   dehydrateOptions: {
-    shouldDehydrateQuery: (query: { queryKey: readonly unknown[]; state: { status: string } }) =>
+    shouldDehydrateQuery: (query) =>
       query.queryKey[0] === 'github' && query.state.status === 'success',
   },
 }
