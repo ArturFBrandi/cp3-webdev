@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { makeRepoResponse } from '@/test/fixtures'
 import { NotFoundError, RateLimitError } from '@/types/errors'
-import { fetchReadme, fetchRepos, filterPortfolioRepos, toRepo } from './github'
+import { fetchReadme, fetchRepo, fetchRepos, filterPortfolioRepos, toRepo } from './github'
 
 function mockFetch(response: Response) {
   const fetchMock = vi.fn<typeof fetch>(() => Promise.resolve(response))
@@ -71,8 +71,24 @@ describe('fetchReadme', () => {
     mockFetch(new Response('', { status: 429, headers: { 'x-ratelimit-remaining': '0' } }))
     await expect(fetchReadme('x')).rejects.toBeInstanceOf(RateLimitError)
   })
+})
 
-  it('maps a missing repository to NotFoundError elsewhere', () => {
-    expect(new NotFoundError()).toBeInstanceOf(Error)
+describe('fetchRepo', () => {
+  it('requests the repository and maps it', async () => {
+    const fetchMock = mockFetch(
+      Response.json(makeRepoResponse({ name: 'demo', stargazers_count: 2 })),
+    )
+    await expect(fetchRepo('demo')).resolves.toMatchObject({ name: 'demo', stars: 2 })
+    expect(fetchMock).toHaveBeenCalledWith(
+      'https://api.github.com/repos/ArturFBrandi/demo',
+      expect.objectContaining({
+        headers: expect.objectContaining({ Accept: 'application/vnd.github+json' }),
+      }),
+    )
+  })
+
+  it('throws NotFoundError for a missing repository', async () => {
+    mockFetch(new Response('', { status: 404 }))
+    await expect(fetchRepo('nope')).rejects.toBeInstanceOf(NotFoundError)
   })
 })

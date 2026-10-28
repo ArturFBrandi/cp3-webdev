@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatMonth, formatRelative } from './format'
+import { formatMonth, formatRelative, formatTime } from './format'
 
 describe('formatMonth', () => {
   it('formats an ISO month in english', () => {
@@ -30,5 +30,14 @@ describe('formatRelative', () => {
 
   it('falls back to "now" for recent dates', () => {
     expect(formatRelative('2026-10-28T11:59:30Z', 'en-US', now)).toBe('this minute')
+  })
+})
+
+describe('formatTime', () => {
+  const date = new Date(2026, 9, 28, 15, 5)
+
+  it('uses a 12-hour clock in english and 24-hour in portuguese', () => {
+    expect(formatTime(date, 'en-US')).toMatch(/^3:05\sPM$/)
+    expect(formatTime(date, 'pt-BR')).toBe('15:05')
   })
 })

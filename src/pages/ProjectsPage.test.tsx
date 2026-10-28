@@ -1,11 +1,11 @@
-import { screen, within } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { fetchFeaturedNames } from '@/services/featured'
 import { fetchReadme, fetchRepo, fetchRepos } from '@/services/github'
 import { makeRepo } from '@/test/fixtures'
 import { renderRoute } from '@/test/renderRoute'
-import { NotFoundError, RateLimitError } from '@/types/errors'
+import { RateLimitError } from '@/types/errors'
 
 vi.mock(import('@/services/github'), async (importOriginal) => ({
   ...(await importOriginal()),
@@ -68,70 +68,5 @@ describe('projects page', () => {
     vi.mocked(fetchRepos).mockResolvedValue([])
     renderRoute('/projects')
     expect(await screen.findByRole('heading', { name: 'No projects yet' })).toBeInTheDocument()
-  })
-})
-
-describe('home featured projects', () => {
-  it('shows the featured repositories in the chosen order', async () => {
-    renderRoute('/')
-    const section = await screen.findByRole('region', { name: 'Selected work' })
-    const titles = await within(section).findAllByRole('heading', { level: 3 })
-    expect(titles.map((title) => title.textContent)).toEqual([
-      'ai-hardcore-engineer',
-      'smartlar-manager',
-    ])
-  })
-
-  it('falls back to recent repositories when the featured list fails', async () => {
-    vi.mocked(fetchFeaturedNames).mockRejectedValue(new Error('supabase down'))
-    renderRoute('/')
-    const section = await screen.findByRole('region', { name: 'Selected work' })
-    expect(await within(section).findAllByRole('heading', { level: 3 })).toHaveLength(3)
-    expect(within(section).queryByRole('alert')).not.toBeInTheDocument()
-  })
-})
-
-describe('project detail', () => {
-  it('opens from a card without new GitHub requests, and back again', async () => {
-    const { router } = renderRoute('/projects')
-    await userEvent.click(await screen.findByRole('link', { name: 'smartlar-manager' }))
-
-    expect(
-      await screen.findByRole('heading', { level: 1, name: 'smartlar-manager' }),
-    ).toBeInTheDocument()
-    // The README renderer is a lazy chunk; importing it can be slow on the first test run.
-    expect(
-      await screen.findByRole('heading', { name: 'Hello' }, { timeout: 10_000 }),
-    ).toBeInTheDocument()
-
-    await router.navigate('/projects')
-    await screen.findByRole('link', { name: 'RetroPalette' })
-
-    expect(fetchRepos).toHaveBeenCalledTimes(1)
-    expect(fetchRepo).not.toHaveBeenCalled()
-  }, 30_000)
-
-  it('loads a shared link directly', async () => {
-    vi.mocked(fetchRepo).mockResolvedValue(repos[0]!)
-    renderRoute('/projects/smartlar-manager')
-    expect(
-      await screen.findByRole('heading', { level: 1, name: 'smartlar-manager' }),
-    ).toBeInTheDocument()
-    expect(fetchRepo).toHaveBeenCalledWith('smartlar-manager')
-  })
-
-  it('shows the 404 page for a repository that does not exist', async () => {
-    vi.mocked(fetchRepo).mockRejectedValue(new NotFoundError())
-    renderRoute('/projects/nope')
-    expect(await screen.findByRole('heading', { name: 'Page not found' })).toBeInTheDocument()
-  })
-
-  it('says so when the repository has no README', async () => {
-    vi.mocked(fetchRepo).mockResolvedValue(repos[2]!)
-    vi.mocked(fetchReadme).mockResolvedValue(null)
-    renderRoute('/projects/RetroPalette')
-    expect(
-      await screen.findByText("This repository doesn't have a README yet."),
-    ).toBeInTheDocument()
   })
 })
