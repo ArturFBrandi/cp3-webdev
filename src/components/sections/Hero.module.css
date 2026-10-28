@@ -1,0 +1,36 @@
+.hero {
+  padding-top: clamp(72px, 14vw, 128px);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.title {
+  font-size: clamp(40px, 7vw, 60px);
+  margin-bottom: 20px;
+}
+
+.lede {
+  max-width: 56ch;
+  font-size: 19px;
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 28px 0 20px;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  font-size: 15px;
+}

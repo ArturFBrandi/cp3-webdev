@@ -1,7 +1,10 @@
+import { AppLayout } from '@/components/layout/AppLayout'
+import { HomePage } from '@/pages/HomePage'
+
 export function App() {
   return (
-    <main>
-      <h1>Artur Brandi</h1>
-    </main>
+    <AppLayout>
+      <HomePage />
+    </AppLayout>
   )
 }
