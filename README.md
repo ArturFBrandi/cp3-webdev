@@ -2,21 +2,32 @@
 
 Personal portfolio built in React for the CP3 assignment (FIAP — Web Development). It lists my GitHub projects through the GitHub API, has a contact form that emails me and stores the message, and an owner dashboard behind a login. The site is available in Portuguese and English.
 
-The implementation plan, with the reasoning behind each choice, is in [`docs/PLAN.md`](docs/PLAN.md).
+- **Plan and stack decisions:** [`docs/PLAN.md`](docs/PLAN.md)
+- **Architecture diagrams** (system, data flow, routes, branch → deploy): [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+
+## Features
+
+- Projects loaded live from the GitHub API, cached, with a detail page per repo (`/projects/:name`) that renders its README
+- Featured projects on the home page, chosen in the dashboard
+- Contact form with per-field validation; each message is stored in Supabase and e-mailed to me
+- Owner dashboard behind a login: read messages, mark them as answered, choose featured projects
+- Portuguese and English, light and dark theme, both remembered between visits
+- Friendly 404 and error pages; loading, error and empty states for every API call
 
 ## Tech stack
 
-| Area         | Tools                                                           |
-| ------------ | --------------------------------------------------------------- |
-| Build & UI   | Vite, React, TypeScript (strict), CSS Modules                   |
-| Routing      | React Router                                                    |
-| Server state | TanStack Query                                                  |
-| Forms        | React Hook Form + Zod                                           |
-| i18n         | react-i18next (PT / EN)                                         |
-| Backend      | Supabase (Auth + Postgres), Vercel Functions (`api/`), Resend   |
-| Tests        | Vitest + Testing Library                                        |
-| Code quality | oxlint, Prettier, Husky, lint-staged, commitlint                |
-| Deploy       | Vercel (auto-deploy on `main`, preview deploy on pull requests) |
+| Area         | Tools                                                         |
+| ------------ | ------------------------------------------------------------- |
+| Build & UI   | Vite, React, TypeScript (strict), CSS Modules                 |
+| Routing      | React Router                                                  |
+| Server state | TanStack Query                                                |
+| Forms        | React Hook Form + Zod                                         |
+| i18n         | react-i18next (PT / EN)                                       |
+| Backend      | Supabase (Auth + Postgres), Vercel Functions (`api/`), Resend |
+| Images       | vite-imagetools (AVIF / WebP, responsive widths)              |
+| Tests        | Vitest + Testing Library                                      |
+| Code quality | oxlint, Prettier, Husky, lint-staged, commitlint              |
+| CI / Deploy  | GitHub Actions (checks on every PR), Vercel (auto-deploy)     |
 
 ## Running locally
 
@@ -40,12 +51,20 @@ npm run dev            # http://localhost:5173
 | `npm run format`     | Format everything with Prettier     |
 | `npm test`           | Run the test suite once             |
 | `npm run test:watch` | Run tests in watch mode             |
+| `npm run analyze`    | Build and open a bundle size map    |
 
 ### Environment variables
 
 See [`.env.example`](.env.example). Variables prefixed with `VITE_` are bundled into the browser and must only hold public values. Server-only secrets (`SUPABASE_SERVICE_ROLE_KEY`, `RESEND_API_KEY`) are read only by functions in `api/`.
 
-Database schema changes live in `supabase/migrations/` and are applied in order (Supabase SQL editor or `npx supabase db push`). `.env` is git-ignored.
+`.env` is git-ignored.
+
+### First-time setup (Supabase, Resend, Vercel)
+
+1. **Database:** run the files in `supabase/migrations/` in order (Supabase SQL editor or `npx supabase db push`). They create `featured_projects` and `messages`, and add the row-level security policies.
+2. **Owner account:** in Supabase → Authentication, create the owner user (the e-mail in `public.is_owner()`) and turn off **Allow new users to sign up**.
+3. **E-mail:** create a Resend API key. Without a verified domain, Resend only delivers to the e-mail of the Resend account, so use that address as `CONTACT_TO_EMAIL`.
+4. **Vercel:** import the repository, then set the variables from `.env.example` under Settings → Environment Variables. Every push to `main` deploys to production, and every pull request gets a preview URL.
 
 ## Project structure
 
@@ -96,7 +115,7 @@ src/
 Format: `type(scope): description`, in the imperative mood and lower case. Enforced by commitlint on every commit.
 
 - **Types:** `feat`, `fix`, `refactor`, `style`, `test`, `docs`, `chore`, `perf`, `build`, `ci`
-- **Scopes:** `setup`, `harness`, `layout`, `theme`, `i18n`, `routing`, `github`, `contact`, `auth`, `dashboard`, `perf`, `deps`, `docs`
+- **Scopes:** `setup`, `harness`, `layout`, `theme`, `i18n`, `routing`, `github`, `contact`, `auth`, `dashboard`, `perf`, `deps`, `docs`, `ci`
 
 Examples: `feat(contact): add per-field validation`, `fix(routing): show 404 for unknown repo`.
 
@@ -104,12 +123,13 @@ Examples: `feat(contact): add per-field validation`, `fix(routing): show 404 for
 
 - `main` is always deployable. Vercel deploys it automatically, and nobody commits to it directly.
 - Each piece of work gets its own branch from `main`: `feature/<name>`, `fix/<name>`, `chore/<name>`, `test/<name>`, `perf/<name>`.
-- Open a pull request into `main`. Vercel builds a preview deploy for it. Merge once lint, type-check and tests pass.
+- Open a pull request into `main`. GitHub Actions runs typecheck, lint, format check, tests and build, and Vercel builds a preview deploy. Merge only when CI is green.
 
 ### Automated checks
 
 - **pre-commit** (Husky + lint-staged): oxlint `--fix` and Prettier on staged files.
 - **commit-msg** (Husky + commitlint): rejects messages that aren't Conventional Commits.
+- **CI** (`.github/workflows/ci.yml`): the same checks plus the full test suite and a production build, on every pull request and push to `main`.
 
 ## AI harness
 
