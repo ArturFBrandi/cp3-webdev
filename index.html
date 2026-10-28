@@ -9,6 +9,24 @@
       content="Portfolio of Artur Brandi — Backend Software Engineer building integration platforms and AI-assisted engineering workflows, and an indie game developer."
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      // Runs before first paint so the page never flashes the wrong theme or language.
+      // Keys must match THEME_STORAGE_KEY (src/contexts/themeContext.ts) and LANGUAGE_STORAGE_KEY (src/app/i18n.ts).
+      ;(function () {
+        var root = document.documentElement
+        try {
+          var theme = localStorage.getItem('theme')
+          if (theme !== 'light' && theme !== 'dark') {
+            theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+          }
+          root.dataset.theme = theme
+          var lang = localStorage.getItem('lang') || navigator.language
+          root.lang = /^pt/i.test(lang) ? 'pt-BR' : 'en-US'
+        } catch (e) {
+          root.dataset.theme = 'light'
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
