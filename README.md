@@ -110,10 +110,15 @@ Examples: `feat(contact): add per-field validation`, `fix(routing): show 404 for
 
 This project is developed with Claude Code. The instructions and tooling the AI uses live in the repository so they are versioned with the code:
 
-| File                    | Purpose                                                           |
-| ----------------------- | ----------------------------------------------------------------- |
-| `CLAUDE.md`             | Project instructions: architecture, naming, i18n, git rules       |
-| `.claude/settings.json` | Permissions and hooks (format + lint after edits, protect `main`) |
-| `.claude/skills/`       | Repeatable workflows (new feature, new component)                 |
-| `.claude/agents/`       | Architecture reviewer subagent                                    |
-| `.mcp.json`             | MCP servers available to the AI                                   |
+| File                                      | Purpose                                                                                           |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `CLAUDE.md`                               | Project instructions loaded in every session: architecture, i18n, naming and git rules            |
+| `.claude/settings.json`                   | Permissions (safe commands allowed, push/PR/install ask first, `.env` unreadable) and hooks       |
+| `.claude/hooks/guard-git.mjs`             | Blocks commits on `main`, pushes to `main` and `--no-verify`                                      |
+| `.claude/hooks/format-and-lint.mjs`       | Runs Prettier and oxlint on every file the AI edits and sends lint errors back to it              |
+| `.claude/skills/new-feature/`             | Workflow: branch → layered implementation → tests → Conventional Commits → review → PR            |
+| `.claude/skills/new-component/`           | Folder choice, naming, CSS Module, i18n and accessibility checklist for components                |
+| `.claude/agents/architecture-reviewer.md` | Read-only subagent that checks a branch diff against the rules before a PR                        |
+| `.mcp.json`                               | MCP servers: Context7 (current library docs), Supabase (schema and RLS), Vercel (deploys and env) |
+
+The same rules are enforced for humans and the AI: the git hooks (lint-staged, commitlint) run on every commit, no matter who made it.

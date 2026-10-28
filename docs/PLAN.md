@@ -51,6 +51,9 @@ Every public repo currently has `description: null`, and the cards must show a d
 - [ ] Add topics (they become the card tags, replacing the hardcoded `project-tags`). Example for `ai-hardcore-engineer`: `python langgraph fastapi rag qdrant postgresql docker`.
 - [ ] Set the repo **Website** field for `ai-hardcore-engineer` to the YouTube walkthrough. The card renders `homepage` as a link, replacing "Watch walkthrough ↗".
 - [ ] Move the long project paragraph into that repo's README. The detail page `/projects/:name` renders the README.
+- [ ] `smartlar-manager`: set the description (e.g. "Management system for a smart-home installation company: clients, quotes, order status flow and technician schedule"), the topics (`react typescript tanstack-start supabase postgresql n8n tailwind shadcn-ui`) and the **Website** field to `https://smartlar-manager.lovable.app/`. Its README is in Portuguese, so the detail page shows it as-is.
+
+**Featured projects at launch:** `ai-hardcore-engineer` and `smartlar-manager`. They are inserted into `featured_projects` by the first migration, and after that they're managed from the dashboard.
 
 **Repo list filter (in `services/github.ts`, not manual registration):** exclude forks, archived repos, the profile repo `ArturFBrandi`, and empty repos (`size === 0`). Sort by `pushed_at` desc.
 
@@ -134,6 +137,8 @@ Rules (also written in README and `CLAUDE.md`):
   RLS: no anon access; authenticated owner can `select` and `update`. Inserts happen only from `api/contact.ts` with the service-role key.
 - `featured_projects(repo_name text pk, position int)`
   RLS: anon `select`; authenticated owner `insert`, `update` and `delete`.
+  Seed: `('ai-hardcore-engineer', 1), ('smartlar-manager', 2)`.
+- Supabase project: `edkwyyimugwihabykdpu` (`https://edkwyyimugwihabykdpu.supabase.co`). Schema changes are versioned as SQL migrations in `supabase/migrations/`.
 - Auth: create your one user in the dashboard and **disable sign-ups**.
 
 **GitHub API**: unauthenticated (60 req/h per IP). Mitigations: `staleTime` 10 min, `persistQueryClient` to localStorage, and one `useRepos` query reused by Home, Projects and Dashboard (the detail page reads from that cache before fetching). On `403` with `x-ratelimit-remaining: 0`, show a specific ErrorState that includes the reset time.
