@@ -34,5 +34,26 @@
   "theme": {
     "switchToDark": "Switch to dark theme",
     "switchToLight": "Switch to light theme"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or was moved.",
+    "backHome": "Back to home"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "An unexpected error stopped this page from loading. Try again in a moment.",
+    "retry": "Try again",
+    "backHome": "Back to home"
+  },
+  "projectsPage": {
+    "title": "Projects",
+    "description": "Everything public on my GitHub, loaded live from the GitHub API."
+  },
+  "meta": {
+    "home": "Artur Brandi — Software & AI Engineer",
+    "notFound": "Page not found — Artur Brandi",
+    "error": "Error — Artur Brandi",
+    "projects": "Projects — Artur Brandi"
   }
 }
