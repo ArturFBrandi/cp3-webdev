@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "primary": "Primary",
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "experience": "Experience",
+    "contact": "Contact",
+    "skipToContent": "Skip to content",
+    "backToTop": "Artur Brandi — back to top"
+  },
+  "hero": {
+    "viewProjects": "View projects"
+  },
+  "sections": {
+    "featured": "Selected work",
+    "inDevelopment": "In development",
+    "skills": "What I work with",
+    "experience": "Experience",
+    "contact": "Let's talk"
+  },
+  "experience": {
+    "present": "Present"
+  },
+  "language": {
+    "label": "Language",
+    "switchTo": "Switch language to {{language}}",
+    "en": "English",
+    "pt": "Português"
+  },
+  "footer": {
+    "copyright": "© {{year}} Artur Brandi"
+  }
+}

@@ -29,7 +29,8 @@
       {
         "allow": ["**/*.css", "@testing-library/jest-dom/vitest", "@fontsource-variable/**"]
       }
-    ]
+    ],
+    "import/no-named-as-default-member": "off"
   },
   "ignorePatterns": ["dist", "coverage", "node_modules"]
 }
