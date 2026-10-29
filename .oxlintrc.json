@@ -27,7 +27,12 @@
     "import/no-unassigned-import": [
       "warn",
       {
-        "allow": ["**/*.css", "@testing-library/jest-dom/vitest", "@fontsource-variable/**"]
+        "allow": [
+          "**/*.css",
+          "@testing-library/jest-dom/vitest",
+          "@fontsource-variable/**",
+          "@/app/i18n"
+        ]
       }
     ],
     "import/no-named-as-default-member": "off"

@@ -1,0 +1,9 @@
+.section {
+  padding-top: var(--space-section);
+  scroll-margin-top: 16px;
+}
+
+.title {
+  font-size: clamp(24px, 3vw, 30px);
+  margin-bottom: 36px;
+}

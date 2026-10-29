@@ -1,0 +1,30 @@
+.state {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px 28px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.description {
+  max-width: 48ch;
+  margin: 0 auto;
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.error {
+  border-style: solid;
+  border-color: var(--danger);
+}
