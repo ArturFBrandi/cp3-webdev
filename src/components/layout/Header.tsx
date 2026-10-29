@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { owner } from '@/content/shared'
 import styles from './Header.module.css'
 import { LanguageSwitcher } from './LanguageSwitcher'
+import { ThemeToggle } from './ThemeToggle'
 
 export function Header() {
   const { t } = useTranslation()
@@ -19,6 +20,7 @@ export function Header() {
       </nav>
       <div className={styles.controls}>
         <LanguageSwitcher />
+        <ThemeToggle />
       </div>
     </header>
   )
