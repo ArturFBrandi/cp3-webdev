@@ -79,7 +79,8 @@
       "generic": "A API do GitHub não respondeu como esperado. Verifique sua conexão e tente novamente.",
       "rateLimit": "O limite de requisições do GitHub para a sua rede foi atingido. Ele é renovado às {{time}}.",
       "retry": "Tentar novamente"
-    }
+    },
+    "previewAlt": "Prévia de {{name}}"
   },
   "projectDetail": {
     "back": "Todos os projetos",

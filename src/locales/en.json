@@ -79,7 +79,8 @@
       "generic": "The GitHub API didn't respond as expected. Check your connection and try again.",
       "rateLimit": "GitHub's request limit for your network was reached. It resets at {{time}}.",
       "retry": "Try again"
-    }
+    },
+    "previewAlt": "Preview of {{name}}"
   },
   "projectDetail": {
     "back": "All projects",

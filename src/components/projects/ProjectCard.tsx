@@ -2,7 +2,9 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { Card } from '@/components/ui/Card'
 import { ExternalLink } from '@/components/ui/ExternalLink'
+import { Picture } from '@/components/ui/Picture'
 import { TagList } from '@/components/ui/TagList'
+import { projectPreviews } from '@/content/projectPreviews'
 import { useLanguage } from '@/hooks/useLanguage'
 import type { Repo } from '@/types/github'
 import { formatRelative } from '@/utils/format'
@@ -18,9 +20,18 @@ export function ProjectCard({ repo, headingLevel: Heading = 'h3' }: ProjectCardP
   const { t } = useTranslation()
   const { locale } = useLanguage()
   const detailPath = `/projects/${encodeURIComponent(repo.name)}`
+  const preview = projectPreviews[repo.name]
 
   return (
     <Card as="li" className={styles.card}>
+      {preview && (
+        <Picture
+          className={styles.preview}
+          picture={preview}
+          alt={t('projects.previewAlt', { name: repo.name })}
+          sizes="(max-width: 780px) 100vw, 732px"
+        />
+      )}
       <p className={styles.meta}>
         {repo.language && <span>{repo.language}</span>}
         <span>{t('projects.updated', { time: formatRelative(repo.pushedAt, locale) })}</span>

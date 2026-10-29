@@ -3,3 +3,10 @@
   max-width: 56ch;
   margin: -20px 0 28px;
 }
+
+/* Same footprint as the form, so it doesn't push the footer when it loads. */
+.formSkeleton {
+  max-width: 560px;
+  height: 452px;
+  border-radius: var(--radius-lg);
+}

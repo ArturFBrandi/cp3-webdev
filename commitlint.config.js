@@ -18,6 +18,7 @@ export default {
         'perf',
         'deps',
         'docs',
+        'ci',
       ],
     ],
   },
