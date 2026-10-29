@@ -1,0 +1,100 @@
+.readme {
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+
+.readme h1,
+.readme h2,
+.readme h3,
+.readme h4 {
+  margin: 1.6em 0 0.6em;
+}
+
+.readme h1 {
+  font-size: 28px;
+}
+
+.readme h2 {
+  font-size: 22px;
+}
+
+.readme h3 {
+  font-size: 18px;
+}
+
+.readme > :first-child {
+  margin-top: 0;
+}
+
+.readme ul,
+.readme ol {
+  padding-left: 22px;
+  margin: 0 0 1em;
+}
+
+.readme li {
+  margin-bottom: 4px;
+}
+
+.readme a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.readme code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.readme pre {
+  background: var(--tag-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  overflow-x: auto;
+  margin: 0 0 1em;
+}
+
+.readme pre code {
+  padding: 0;
+  background: none;
+}
+
+.readme blockquote {
+  margin: 0 0 1em;
+  padding-left: 16px;
+  border-left: 3px solid var(--border);
+  color: var(--text-muted);
+}
+
+.readme img {
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  margin: 0 0 1em;
+}
+
+.readme table {
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.readme th,
+.readme td {
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  text-align: left;
+}
+
+.readme hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}

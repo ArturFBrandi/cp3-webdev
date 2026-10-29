@@ -9,6 +9,8 @@ interface ButtonLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href?: string
   variant?: ButtonVariant
   size?: ButtonSize
+  /** Appends a decorative ↗ arrow (hidden from screen readers). */
+  arrow?: boolean
 }
 
 /** A link styled as a Button. */
@@ -18,19 +20,26 @@ export function ButtonLink({
   size = 'medium',
   className,
   children,
+  arrow = false,
   ...props
 }: ButtonLinkProps) {
   const classes = buttonClassName(variant, size, className)
+  const content = (
+    <>
+      {children}
+      {arrow && <span aria-hidden="true">↗</span>}
+    </>
+  )
   if (to) {
     return (
       <Link to={to} className={classes} {...props}>
-        {children}
+        {content}
       </Link>
     )
   }
   return (
     <a className={classes} {...props}>
-      {children}
+      {content}
     </a>
   )
 }

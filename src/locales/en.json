@@ -54,6 +54,36 @@
     "home": "Artur Brandi — Software & AI Engineer",
     "notFound": "Page not found — Artur Brandi",
     "error": "Error — Artur Brandi",
-    "projects": "Projects — Artur Brandi"
+    "projects": "Projects — Artur Brandi",
+    "project": "{{name}} — Artur Brandi"
+  },
+  "projects": {
+    "seeAll": "See all projects",
+    "loading": "Loading projects…",
+    "updated": "Updated {{time}}",
+    "noDescription": "No description yet.",
+    "details": "Details",
+    "viewOnGithub": "View on GitHub",
+    "website": "Website",
+    "stars_one": "{{count}} star",
+    "stars_other": "{{count}} stars",
+    "topics": "Topics",
+    "empty": {
+      "title": "No projects yet",
+      "description": "There are no public repositories to show right now."
+    },
+    "errors": {
+      "title": "Couldn't load projects",
+      "generic": "The GitHub API didn't respond as expected. Check your connection and try again.",
+      "rateLimit": "GitHub's request limit for your network was reached. It resets at {{time}}.",
+      "retry": "Try again"
+    }
+  },
+  "projectDetail": {
+    "back": "All projects",
+    "readme": "README",
+    "noReadme": "This repository doesn't have a README yet.",
+    "readmeError": "The README couldn't be loaded.",
+    "loading": "Loading project…"
   }
 }

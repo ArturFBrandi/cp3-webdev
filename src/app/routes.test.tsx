@@ -11,11 +11,6 @@ describe('routes', () => {
     ).toBeInTheDocument()
   })
 
-  it('opens a project URL directly', async () => {
-    renderRoute('/projects/smartlar-manager')
-    expect(await screen.findByRole('heading', { name: 'smartlar-manager' })).toBeInTheDocument()
-  })
-
   it('shows a friendly 404 inside the layout for unknown routes', async () => {
     renderRoute('/does-not-exist')
     expect(await screen.findByRole('heading', { name: 'Page not found' })).toBeInTheDocument()

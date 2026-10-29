@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatMonth } from './format'
+import { formatMonth, formatRelative, formatTime } from './format'
 
 describe('formatMonth', () => {
   it('formats an ISO month in english', () => {
@@ -12,5 +12,32 @@ describe('formatMonth', () => {
 
   it('returns the input when it is not an ISO month', () => {
     expect(formatMonth('soon', 'en-US')).toBe('soon')
+  })
+})
+
+describe('formatRelative', () => {
+  const now = Date.parse('2026-10-28T12:00:00Z')
+
+  it('uses the largest fitting unit', () => {
+    expect(formatRelative('2026-10-25T12:00:00Z', 'en-US', now)).toBe('3 days ago')
+    expect(formatRelative('2026-08-28T12:00:00Z', 'en-US', now)).toBe('2 months ago')
+  })
+
+  it('says "yesterday" and handles portuguese', () => {
+    expect(formatRelative('2026-10-27T12:00:00Z', 'en-US', now)).toBe('yesterday')
+    expect(formatRelative('2026-10-25T12:00:00Z', 'pt-BR', now)).toBe('há 3 dias')
+  })
+
+  it('falls back to "now" for recent dates', () => {
+    expect(formatRelative('2026-10-28T11:59:30Z', 'en-US', now)).toBe('this minute')
+  })
+})
+
+describe('formatTime', () => {
+  const date = new Date(2026, 9, 28, 15, 5)
+
+  it('uses a 12-hour clock in english and 24-hour in portuguese', () => {
+    expect(formatTime(date, 'en-US')).toMatch(/^3:05\sPM$/)
+    expect(formatTime(date, 'pt-BR')).toBe('15:05')
   })
 })
