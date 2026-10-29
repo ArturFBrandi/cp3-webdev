@@ -28,6 +28,8 @@ cp .env.example .env   # fill in the values
 npm run dev            # http://localhost:5173
 ```
 
+`npm run dev` serves the front end only. To run the contact API (`api/contact.ts`) locally as well, use the Vercel CLI: `npx vercel dev`.
+
 | Script               | What it does                        |
 | -------------------- | ----------------------------------- |
 | `npm run dev`        | Start the dev server                |
@@ -41,7 +43,9 @@ npm run dev            # http://localhost:5173
 
 ### Environment variables
 
-See [`.env.example`](.env.example). Variables prefixed with `VITE_` are bundled into the browser and must only hold public values. Server-only secrets (`SUPABASE_SERVICE_ROLE_KEY`, `RESEND_API_KEY`) are read only by functions in `api/`. `.env` is git-ignored.
+See [`.env.example`](.env.example). Variables prefixed with `VITE_` are bundled into the browser and must only hold public values. Server-only secrets (`SUPABASE_SERVICE_ROLE_KEY`, `RESEND_API_KEY`) are read only by functions in `api/`.
+
+Database schema changes live in `supabase/migrations/` and are applied in order (Supabase SQL editor or `npx supabase db push`). `.env` is git-ignored.
 
 ## Project structure
 

@@ -85,5 +85,29 @@
     "noReadme": "This repository doesn't have a README yet.",
     "readmeError": "The README couldn't be loaded.",
     "loading": "Loading project…"
+  },
+  "contact": {
+    "intro": "Have a project, a role or a question? Send me a message — it goes straight to my inbox.",
+    "fields": {
+      "name": "Name",
+      "email": "E-mail",
+      "message": "Message",
+      "messageHint": "At least 20 characters."
+    },
+    "honeypot": "Leave this field empty",
+    "submit": "Send message",
+    "sending": "Sending…",
+    "success": "Thanks! Your message was sent. I'll get back to you soon.",
+    "failure": "Your message couldn't be sent. Please try again in a moment or email me at {{email}}.",
+    "errors": {
+      "nameRequired": "Enter your name",
+      "nameMin": "Name must have at least 2 characters",
+      "nameMax": "Name must have at most 100 characters",
+      "emailRequired": "Enter your e-mail",
+      "emailInvalid": "Invalid e-mail",
+      "messageRequired": "Write a message",
+      "messageMin": "Message must have at least 20 characters",
+      "messageMax": "Message must have at most 2000 characters"
+    }
   }
 }

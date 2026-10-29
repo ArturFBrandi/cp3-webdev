@@ -9,9 +9,27 @@ export default defineConfig({
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },
   test: {
-    environment: 'jsdom',
-    setupFiles: ['./src/test/setup.ts'],
     css: { modules: { classNameStrategy: 'non-scoped' } },
-    include: ['src/**/*.test.{ts,tsx}', 'api/**/*.test.ts'],
+    // Fewer parallel workers keeps start-up reliable on slow (e.g. WSL-mounted) disks.
+    maxWorkers: 4,
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: 'web',
+          environment: 'jsdom',
+          setupFiles: ['./src/test/setup.ts'],
+          include: ['src/**/*.test.{ts,tsx}'],
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: 'api',
+          environment: 'node',
+          include: ['api/**/*.test.ts'],
+        },
+      },
+    ],
   },
 })
