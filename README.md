@@ -2,6 +2,7 @@
 
 Personal portfolio built in React for the CP3 assignment (FIAP — Web Development). It lists my GitHub projects through the GitHub API, has a contact form that emails me and stores the message, and an owner dashboard behind a login. The site is available in Portuguese and English.
 
+- **Live site:** [arturbrandi.vercel.app](https://arturbrandi.vercel.app)
 - **Plan and stack decisions:** [`docs/PLAN.md`](docs/PLAN.md)
 - **Architecture diagrams** (system, data flow, routes, branch → deploy): [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 
