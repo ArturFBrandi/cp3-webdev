@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { Link, NavLink } from 'react-router'
 import { owner } from '@/content/shared'
 import styles from './Header.module.css'
 import { LanguageSwitcher } from './LanguageSwitcher'
@@ -9,14 +10,14 @@ export function Header() {
 
   return (
     <header className={styles.header}>
-      <a className={styles.logo} href="#top" aria-label={t('nav.backToTop')}>
+      <Link className={styles.logo} to="/" aria-label={t('nav.backToTop')}>
         {owner.initials}
-      </a>
+      </Link>
       <nav className={styles.nav} aria-label={t('nav.primary')}>
-        <a href="#projects">{t('nav.projects')}</a>
-        <a href="#about">{t('nav.about')}</a>
-        <a href="#experience">{t('nav.experience')}</a>
-        <a href="#contact">{t('nav.contact')}</a>
+        <NavLink to="/projects">{t('nav.projects')}</NavLink>
+        <Link to="/#about">{t('nav.about')}</Link>
+        <Link to="/#experience">{t('nav.experience')}</Link>
+        <Link to="/#contact">{t('nav.contact')}</Link>
       </nav>
       <div className={styles.controls}>
         <LanguageSwitcher />

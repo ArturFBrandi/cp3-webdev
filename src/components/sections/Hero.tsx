@@ -17,7 +17,7 @@ export function Hero() {
       </h1>
       <p className={styles.lede}>{profile.lede}</p>
       <div className={styles.actions}>
-        <ButtonLink href="#projects">{t('hero.viewProjects')}</ButtonLink>
+        <ButtonLink to="/#projects">{t('hero.viewProjects')}</ButtonLink>
       </div>
       <div className={styles.links}>
         {socialLinks.map((link) => (

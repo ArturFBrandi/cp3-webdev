@@ -34,5 +34,26 @@
   "theme": {
     "switchToDark": "Mudar para o tema escuro",
     "switchToLight": "Mudar para o tema claro"
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "description": "A página que você procura não existe ou foi movida.",
+    "backHome": "Voltar ao início"
+  },
+  "error": {
+    "title": "Algo deu errado",
+    "description": "Um erro inesperado impediu esta página de carregar. Tente novamente em instantes.",
+    "retry": "Tentar novamente",
+    "backHome": "Voltar ao início"
+  },
+  "projectsPage": {
+    "title": "Projetos",
+    "description": "Tudo o que é público no meu GitHub, carregado ao vivo pela API do GitHub."
+  },
+  "meta": {
+    "home": "Artur Brandi — Engenheiro de Software e IA",
+    "notFound": "Página não encontrada — Artur Brandi",
+    "error": "Erro — Artur Brandi",
+    "projects": "Projetos — Artur Brandi"
   }
 }
