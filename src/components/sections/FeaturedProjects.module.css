@@ -1,3 +1,10 @@
+.others {
+  margin-top: 28px;
+}
+
 .more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-top: 28px;
 }

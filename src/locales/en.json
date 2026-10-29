@@ -48,7 +48,7 @@
   },
   "projectsPage": {
     "title": "Projects",
-    "description": "Everything public on my GitHub, loaded live from the GitHub API."
+    "description": "Selected projects from my GitHub, loaded live from the GitHub API."
   },
   "meta": {
     "home": "Artur Brandi — Software & AI Engineer",
@@ -80,7 +80,10 @@
       "rateLimit": "GitHub's request limit for your network was reached. It resets at {{time}}.",
       "retry": "Try again"
     },
-    "previewAlt": "Preview of {{name}}"
+    "mainFocus": "Main focus",
+    "showMore_one": "Show {{count}} more project",
+    "showMore_other": "Show {{count}} more projects",
+    "showLess": "Show fewer projects"
   },
   "projectDetail": {
     "back": "All projects",
