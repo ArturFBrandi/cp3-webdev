@@ -25,12 +25,16 @@ export const content: Content = {
       start: '2023-02',
       end: null,
       bullets: [
-        'Build and maintain scalable RESTful APIs using NestJS and TypeScript.',
-        'Design secure service-to-service communication using OAuth2 and API keys.',
-        'Build ETL pipelines and automation scripts in Python on AWS.',
-        'Implement CI/CD pipelines with CircleCI and automated testing.',
-        'Build and maintain end-to-end test suites with Playwright.',
-        'Apply spec-driven development — structuring requirements and acceptance criteria before implementation for predictable, traceable delivery.',
+        'Build and maintain software and APIs with TypeScript, JavaScript and NestJS.',
+        'Build automation solutions and scripts in Python and Shell Script (Bash), streamlining processes and operational tasks.',
+        'Build and maintain ETL pipelines with Python and AWS services.',
+        'Help build, configure and administer solutions in AWS environments.',
+        'Implement and maintain CI/CD pipelines and automated tests.',
+        'Build and maintain end-to-end tests with Playwright.',
+        'Build monitoring and observability solutions with New Relic.',
+        'Apply spec-driven development, structuring requirements, acceptance criteria and use cases before implementation.',
+        'Build and maintain solutions that run on Linux, including automation and backend services.',
+        'Explore AI tools and LLMs, including Claude Code, applied to software development, automation, documentation and debugging.',
       ],
       achievements: [
         {
