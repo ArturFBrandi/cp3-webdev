@@ -1,3 +1,4 @@
+import { portfolioRepos } from '@/content/shared'
 import { NotFoundError, RateLimitError } from '@/types/errors'
 import type { GitHubRepoResponse, Repo } from '@/types/github'
 
@@ -40,28 +41,29 @@ export function toRepo(repo: GitHubRepoResponse): Repo {
   }
 }
 
-/** Keeps only repositories worth showing: no forks, archived, empty or profile-README repos. */
-export function filterPortfolioRepos(repos: GitHubRepoResponse[], user = GITHUB_USER) {
-  return repos.filter(
-    (repo) =>
-      !repo.fork &&
-      !repo.archived &&
-      repo.size > 0 &&
-      repo.name.toLowerCase() !== user.toLowerCase(),
-  )
+/** Whether a repository is on the portfolio list (GitHub names are case-insensitive). */
+export function isPortfolioRepo(name: string, names: readonly string[] = portfolioRepos) {
+  return names.some((allowed) => allowed.toLowerCase() === name.toLowerCase())
+}
+
+/** Keeps only the repositories on the portfolio list, in the list's order. */
+export function selectPortfolioRepos(
+  repos: GitHubRepoResponse[],
+  names: readonly string[] = portfolioRepos,
+) {
+  const byName = new Map(repos.map((repo) => [repo.name.toLowerCase(), repo]))
+  return names.flatMap((name) => byName.get(name.toLowerCase()) ?? [])
 }
 
 export async function fetchRepos(): Promise<Repo[]> {
-  const response = await githubFetch(
-    `/users/${GITHUB_USER}/repos?per_page=100&type=owner&sort=pushed`,
-  )
+  // One page of 100 is enough while the account has fewer repos; a listed repo past it would be dropped.
+  const response = await githubFetch(`/users/${GITHUB_USER}/repos?per_page=100&type=owner`)
   const repos = (await response.json()) as GitHubRepoResponse[]
-  return filterPortfolioRepos(repos)
-    .map(toRepo)
-    .sort((a, b) => b.pushedAt.localeCompare(a.pushedAt))
+  return selectPortfolioRepos(repos).map(toRepo)
 }
 
 export async function fetchRepo(name: string): Promise<Repo> {
+  if (!isPortfolioRepo(name)) throw new NotFoundError(`Not a portfolio repository: ${name}`)
   const response = await githubFetch(`/repos/${GITHUB_USER}/${encodeURIComponent(name)}`)
   return toRepo((await response.json()) as GitHubRepoResponse)
 }

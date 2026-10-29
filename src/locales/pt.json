@@ -48,7 +48,7 @@
   },
   "projectsPage": {
     "title": "Projetos",
-    "description": "Tudo o que é público no meu GitHub, carregado ao vivo pela API do GitHub."
+    "description": "Projetos selecionados do meu GitHub, carregados ao vivo pela API do GitHub."
   },
   "meta": {
     "home": "Artur Brandi — Engenheiro de Software e IA",
@@ -80,7 +80,10 @@
       "rateLimit": "O limite de requisições do GitHub para a sua rede foi atingido. Ele é renovado às {{time}}.",
       "retry": "Tentar novamente"
     },
-    "previewAlt": "Prévia de {{name}}"
+    "mainFocus": "Foco principal",
+    "showMore_one": "Mostrar mais {{count}} projeto",
+    "showMore_other": "Mostrar mais {{count}} projetos",
+    "showLess": "Mostrar menos projetos"
   },
   "projectDetail": {
     "back": "Todos os projetos",

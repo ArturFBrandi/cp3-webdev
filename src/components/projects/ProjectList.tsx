@@ -13,6 +13,8 @@ interface ProjectListProps {
   onRetry: () => void
   skeletonCount?: number
   headingLevel?: 'h2' | 'h3'
+  /** Shows the first project as the main one. */
+  highlightFirst?: boolean
 }
 
 /** Renders a project list with its loading, error and empty states. */
@@ -23,6 +25,7 @@ export function ProjectList({
   onRetry,
   skeletonCount = 3,
   headingLevel,
+  highlightFirst = false,
 }: ProjectListProps) {
   const { t } = useTranslation()
 
@@ -49,8 +52,13 @@ export function ProjectList({
 
   return (
     <ul className={styles.list}>
-      {repos.map((repo) => (
-        <ProjectCard key={repo.name} repo={repo} headingLevel={headingLevel} />
+      {repos.map((repo, index) => (
+        <ProjectCard
+          key={repo.name}
+          repo={repo}
+          headingLevel={headingLevel}
+          highlighted={highlightFirst && index === 0}
+        />
       ))}
     </ul>
   )

@@ -7,8 +7,8 @@ Personal portfolio built in React for the CP3 assignment (FIAP — Web Developme
 
 ## Features
 
-- Projects loaded live from the GitHub API, cached, with a detail page per repo (`/projects/:name`) that renders its README
-- Featured projects on the home page, chosen in the dashboard
+- A curated list of my GitHub repos (`portfolioRepos` in `src/content/shared.ts`), loaded live from the GitHub API and cached, with a detail page per repo (`/projects/:name`) that renders its README
+- Featured projects on the home page, chosen in the dashboard; the first is the main focus and the rest of the list expands on demand
 - Contact form with per-field validation; each message is stored in Supabase and e-mailed to me
 - Owner dashboard behind a login: read messages, mark them as answered, choose featured projects
 - Portuguese and English, light and dark theme, both remembered between visits
@@ -24,7 +24,6 @@ Personal portfolio built in React for the CP3 assignment (FIAP — Web Developme
 | Forms        | React Hook Form + Zod                                         |
 | i18n         | react-i18next (PT / EN)                                       |
 | Backend      | Supabase (Auth + Postgres), Vercel Functions (`api/`), Resend |
-| Images       | vite-imagetools (AVIF / WebP, responsive widths)              |
 | Tests        | Vitest + Testing Library                                      |
 | Code quality | oxlint, Prettier, Husky, lint-staged, commitlint              |
 | CI / Deploy  | GitHub Actions (checks on every PR), Vercel (auto-deploy)     |
