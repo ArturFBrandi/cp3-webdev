@@ -56,6 +56,7 @@ export function selectPortfolioRepos(
 }
 
 export async function fetchRepos(): Promise<Repo[]> {
+  // One page of 100 is enough while the account has fewer repos; a listed repo past it would be dropped.
   const response = await githubFetch(`/users/${GITHUB_USER}/repos?per_page=100&type=owner`)
   const repos = (await response.json()) as GitHubRepoResponse[]
   return selectPortfolioRepos(repos).map(toRepo)

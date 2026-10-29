@@ -30,4 +30,4 @@ export const portfolioRepos = [
   'CS107',
   'CS106B',
   'CS106A',
-]
+] as const
