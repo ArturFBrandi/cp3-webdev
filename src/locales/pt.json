@@ -55,7 +55,9 @@
     "notFound": "Página não encontrada — Artur Brandi",
     "error": "Erro — Artur Brandi",
     "projects": "Projetos — Artur Brandi",
-    "project": "{{name}} — Artur Brandi"
+    "project": "{{name}} — Artur Brandi",
+    "login": "Login — Artur Brandi",
+    "dashboard": "Painel — Artur Brandi"
   },
   "projects": {
     "seeAll": "Ver todos os projetos",
@@ -108,6 +110,67 @@
       "messageRequired": "Escreva uma mensagem",
       "messageMin": "Mensagem com no mínimo 20 caracteres",
       "messageMax": "Mensagem com no máximo 2000 caracteres"
+    }
+  },
+  "auth": {
+    "title": "Login do dono",
+    "description": "O painel está disponível apenas para o dono do site.",
+    "email": "E-mail",
+    "password": "Senha",
+    "submit": "Entrar",
+    "submitting": "Entrando…",
+    "checking": "Verificando sua sessão…",
+    "errors": {
+      "emailRequired": "Informe seu e-mail",
+      "emailInvalid": "E-mail inválido",
+      "passwordRequired": "Informe sua senha",
+      "invalidCredentials": "E-mail ou senha inválidos.",
+      "generic": "Não foi possível entrar agora. Tente novamente em instantes."
+    }
+  },
+  "dashboard": {
+    "title": "Painel",
+    "signedInAs": "Conectado como {{email}}",
+    "signOut": "Sair",
+    "sections": "Seções do painel",
+    "tabs": {
+      "messages": "Mensagens",
+      "featured": "Projetos em destaque"
+    },
+    "denied": {
+      "title": "Acesso negado",
+      "description": "{{email}} não é o dono deste site."
+    },
+    "messages": {
+      "loading": "Carregando mensagens…",
+      "unansweredCount_one": "{{count}} sem resposta",
+      "unansweredCount_other": "{{count}} sem resposta",
+      "received": "Recebida em {{date}}",
+      "answered": "Respondida",
+      "pending": "Aguardando resposta",
+      "markAnswered": "Marcar como respondida",
+      "markUnanswered": "Marcar como não respondida",
+      "reply": "Responder por e-mail",
+      "updateError": "Não foi possível atualizar a mensagem. Tente novamente.",
+      "empty": {
+        "title": "Nenhuma mensagem ainda",
+        "description": "As mensagens enviadas pelo formulário de contato aparecem aqui."
+      },
+      "error": {
+        "title": "Não foi possível carregar as mensagens",
+        "description": "Verifique sua conexão e tente novamente.",
+        "retry": "Tentar novamente"
+      }
+    },
+    "featured": {
+      "description": "Escolha os projetos exibidos na página inicial. Eles aparecem na ordem em que você os seleciona.",
+      "save": "Salvar seleção",
+      "saving": "Salvando…",
+      "saved": "Projetos em destaque salvos.",
+      "saveError": "Não foi possível salvar. Tente novamente.",
+      "selected_one": "{{count}} selecionado",
+      "selected_other": "{{count}} selecionados",
+      "position": "#{{position}}"
     }
   }
 }

@@ -38,7 +38,10 @@ export interface Database {
       }
     }
     Views: Record<string, never>
-    Functions: Record<string, never>
+    Functions: {
+      is_owner: { Args: Record<string, never>; Returns: boolean }
+      set_featured_projects: { Args: { names: string[] }; Returns: undefined }
+    }
     Enums: Record<string, never>
     CompositeTypes: Record<string, never>
   }

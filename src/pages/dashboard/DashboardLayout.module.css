@@ -1,0 +1,52 @@
+.page {
+  padding-top: clamp(48px, 8vw, 80px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-bottom: 28px;
+}
+
+.title {
+  font-size: clamp(30px, 5vw, 40px);
+  margin-bottom: 6px;
+}
+
+.user {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+  overflow-x: auto;
+}
+
+.tab {
+  padding: 10px 14px;
+  color: var(--text-muted);
+  font-size: 15px;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.tab[aria-current='page'] {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}

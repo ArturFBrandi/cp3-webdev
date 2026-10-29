@@ -30,11 +30,12 @@ Do not add a dependency that isn't in the plan without asking first.
 ```
 api/              Vercel Functions (server only; may use secrets)
 src/app/          App shell, router, providers, i18n setup
-src/pages/        One component per route; composes sections and hooks
+src/pages/        One component per route; composes sections and hooks (dashboard routes in pages/dashboard/)
 src/components/ui/        Presentational primitives: Button, Card, Tag, Skeleton, Spinner, ErrorState, EmptyState, FormField
 src/components/layout/    Header, Footer, ThemeToggle, LanguageSwitcher, ProtectedRoute
 src/components/sections/  Home page sections
 src/components/projects/  Project cards and grids
+src/components/dashboard/ Owner dashboard pieces (lazy-loaded with the dashboard)
 src/hooks/        Custom hooks (TanStack Query wrappers, auth, theme, content) + queryKeys.ts (all query keys)
 src/services/     The only place that calls fetch / Supabase / GitHub
 src/schemas/      Zod schemas (shared with api/)

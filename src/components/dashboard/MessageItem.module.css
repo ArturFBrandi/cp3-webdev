@@ -1,0 +1,64 @@
+.item {
+  display: grid;
+  gap: 10px;
+}
+
+.answered {
+  opacity: 0.75;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.name {
+  font-size: 18px;
+}
+
+.email {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.date {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin: 0;
+}
+
+.text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 0;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 6px;
+}
+
+.status {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.statusAnswered {
+  color: var(--success);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}

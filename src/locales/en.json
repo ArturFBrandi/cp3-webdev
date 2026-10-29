@@ -55,7 +55,9 @@
     "notFound": "Page not found — Artur Brandi",
     "error": "Error — Artur Brandi",
     "projects": "Projects — Artur Brandi",
-    "project": "{{name}} — Artur Brandi"
+    "project": "{{name}} — Artur Brandi",
+    "login": "Login — Artur Brandi",
+    "dashboard": "Dashboard — Artur Brandi"
   },
   "projects": {
     "seeAll": "See all projects",
@@ -108,6 +110,67 @@
       "messageRequired": "Write a message",
       "messageMin": "Message must have at least 20 characters",
       "messageMax": "Message must have at most 2000 characters"
+    }
+  },
+  "auth": {
+    "title": "Owner login",
+    "description": "The dashboard is only available to the site owner.",
+    "email": "E-mail",
+    "password": "Password",
+    "submit": "Sign in",
+    "submitting": "Signing in…",
+    "checking": "Checking your session…",
+    "errors": {
+      "emailRequired": "Enter your e-mail",
+      "emailInvalid": "Invalid e-mail",
+      "passwordRequired": "Enter your password",
+      "invalidCredentials": "Invalid e-mail or password.",
+      "generic": "Couldn't sign in right now. Try again in a moment."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "signedInAs": "Signed in as {{email}}",
+    "signOut": "Sign out",
+    "sections": "Dashboard sections",
+    "tabs": {
+      "messages": "Messages",
+      "featured": "Featured projects"
+    },
+    "denied": {
+      "title": "Access denied",
+      "description": "{{email}} is not the owner of this site."
+    },
+    "messages": {
+      "loading": "Loading messages…",
+      "unansweredCount_one": "{{count}} unanswered",
+      "unansweredCount_other": "{{count}} unanswered",
+      "received": "Received {{date}}",
+      "answered": "Answered",
+      "pending": "Waiting for reply",
+      "markAnswered": "Mark as answered",
+      "markUnanswered": "Mark as not answered",
+      "reply": "Reply by e-mail",
+      "updateError": "Couldn't update the message. Try again.",
+      "empty": {
+        "title": "No messages yet",
+        "description": "Messages sent through the contact form show up here."
+      },
+      "error": {
+        "title": "Couldn't load messages",
+        "description": "Check your connection and try again.",
+        "retry": "Try again"
+      }
+    },
+    "featured": {
+      "description": "Choose the projects shown on the home page. They appear in the order you select them.",
+      "save": "Save selection",
+      "saving": "Saving…",
+      "saved": "Featured projects saved.",
+      "saveError": "Couldn't save. Try again.",
+      "selected_one": "{{count}} selected",
+      "selected_other": "{{count}} selected",
+      "position": "#{{position}}"
     }
   }
 }

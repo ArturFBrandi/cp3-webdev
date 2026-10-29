@@ -4,4 +4,5 @@ export const queryKeys = {
   repo: (name: string) => ['github', 'repo', name] as const,
   readme: (name: string) => ['github', 'readme', name] as const,
   featured: ['featured'] as const,
+  messages: ['messages'] as const,
 }

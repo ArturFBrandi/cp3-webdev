@@ -11,13 +11,14 @@ List `src/components/ui/`. If an existing component can do the job with a new pr
 
 ## 2. Pick the folder
 
-| The component...                                    | Folder                     |
-| --------------------------------------------------- | -------------------------- |
-| is a generic visual primitive (no domain knowledge) | `src/components/ui/`       |
-| is part of the page frame (header, footer, toggles) | `src/components/layout/`   |
-| is a section of the home page                       | `src/components/sections/` |
-| renders projects/repositories                       | `src/components/projects/` |
-| is a whole route                                    | `src/pages/`               |
+| The component...                                    | Folder                      |
+| --------------------------------------------------- | --------------------------- |
+| is a generic visual primitive (no domain knowledge) | `src/components/ui/`        |
+| is part of the page frame (header, footer, toggles) | `src/components/layout/`    |
+| is a section of the home page                       | `src/components/sections/`  |
+| renders projects/repositories                       | `src/components/projects/`  |
+| is only used by the owner dashboard                 | `src/components/dashboard/` |
+| is a whole route                                    | `src/pages/`                |
 
 ## 3. Create the files
 
