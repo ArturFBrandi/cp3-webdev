@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { makeRepoResponse } from '@/test/fixtures'
 import { NotFoundError, RateLimitError } from '@/types/errors'
-import { fetchReadme, fetchRepo, fetchRepos, filterPortfolioRepos, toRepo } from './github'
+import { fetchReadme, fetchRepo, fetchRepos, selectPortfolioRepos, toRepo } from './github'
 
 function mockFetch(response: Response) {
   const fetchMock = vi.fn<typeof fetch>(() => Promise.resolve(response))
@@ -9,16 +9,16 @@ function mockFetch(response: Response) {
   return fetchMock
 }
 
-describe('filterPortfolioRepos', () => {
-  it('drops forks, archived, empty and profile repositories', () => {
+describe('selectPortfolioRepos', () => {
+  it('keeps only listed repositories, in the list order, matching names case-insensitively', () => {
     const repos = [
-      makeRepoResponse({ name: 'keep' }),
-      makeRepoResponse({ name: 'fork', fork: true }),
-      makeRepoResponse({ name: 'old', archived: true }),
-      makeRepoResponse({ name: 'empty', size: 0 }),
-      makeRepoResponse({ name: 'ArturFBrandi' }),
+      makeRepoResponse({ name: 'hidden' }),
+      makeRepoResponse({ name: 'second' }),
+      makeRepoResponse({ name: 'First' }),
     ]
-    expect(filterPortfolioRepos(repos, 'arturfbrandi').map((repo) => repo.name)).toEqual(['keep'])
+    expect(
+      selectPortfolioRepos(repos, ['first', 'second', 'missing']).map((repo) => repo.name),
+    ).toEqual(['First', 'second'])
   })
 })
 
@@ -30,16 +30,16 @@ describe('toRepo', () => {
 })
 
 describe('fetchRepos', () => {
-  it('returns filtered repos, most recently pushed first', async () => {
+  it('returns only portfolio repos, in the portfolio order', async () => {
     const fetchMock = mockFetch(
       Response.json([
-        makeRepoResponse({ name: 'older', pushed_at: '2025-01-01T00:00:00Z' }),
-        makeRepoResponse({ name: 'newer', pushed_at: '2026-01-01T00:00:00Z' }),
-        makeRepoResponse({ name: 'forked', fork: true }),
+        makeRepoResponse({ name: 'CS106A' }),
+        makeRepoResponse({ name: 'some-other-repo' }),
+        makeRepoResponse({ name: 'ai-hardcore-engineer-v2' }),
       ]),
     )
     const repos = await fetchRepos()
-    expect(repos.map((repo) => repo.name)).toEqual(['newer', 'older'])
+    expect(repos.map((repo) => repo.name)).toEqual(['ai-hardcore-engineer-v2', 'CS106A'])
     expect(fetchMock).toHaveBeenCalledTimes(1)
   })
 
@@ -76,11 +76,14 @@ describe('fetchReadme', () => {
 describe('fetchRepo', () => {
   it('requests the repository and maps it', async () => {
     const fetchMock = mockFetch(
-      Response.json(makeRepoResponse({ name: 'demo', stargazers_count: 2 })),
+      Response.json(makeRepoResponse({ name: 'smartlar-manager', stargazers_count: 2 })),
     )
-    await expect(fetchRepo('demo')).resolves.toMatchObject({ name: 'demo', stars: 2 })
+    await expect(fetchRepo('smartlar-manager')).resolves.toMatchObject({
+      name: 'smartlar-manager',
+      stars: 2,
+    })
     expect(fetchMock).toHaveBeenCalledWith(
-      'https://api.github.com/repos/ArturFBrandi/demo',
+      'https://api.github.com/repos/ArturFBrandi/smartlar-manager',
       expect.objectContaining({
         headers: expect.objectContaining({ Accept: 'application/vnd.github+json' }),
       }),
@@ -89,6 +92,12 @@ describe('fetchRepo', () => {
 
   it('throws NotFoundError for a missing repository', async () => {
     mockFetch(new Response('', { status: 404 }))
-    await expect(fetchRepo('nope')).rejects.toBeInstanceOf(NotFoundError)
+    await expect(fetchRepo('CS107')).rejects.toBeInstanceOf(NotFoundError)
+  })
+
+  it('treats repositories outside the portfolio as not found, without a request', async () => {
+    const fetchMock = mockFetch(Response.json(makeRepoResponse({ name: 'some-other-repo' })))
+    await expect(fetchRepo('some-other-repo')).rejects.toBeInstanceOf(NotFoundError)
+    expect(fetchMock).not.toHaveBeenCalled()
   })
 })
