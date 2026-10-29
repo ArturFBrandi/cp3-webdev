@@ -1,14 +1,12 @@
 import { fileURLToPath, URL } from 'node:url'
 import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
-import { imagetools } from 'vite-imagetools'
 import { defineConfig } from 'vitest/config'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    imagetools(),
     // `npm run analyze` writes an interactive bundle map to dist/stats.html.
     process.env.ANALYZE ? visualizer({ filename: 'dist/stats.html', gzipSize: true }) : null,
   ],
