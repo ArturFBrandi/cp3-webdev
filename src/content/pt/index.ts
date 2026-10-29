@@ -28,12 +28,16 @@ export const content: Content = {
       start: '2023-02',
       end: null,
       bullets: [
-        'Desenvolvo e mantenho APIs RESTful escaláveis com NestJS e TypeScript.',
-        'Projeto comunicação segura entre serviços com OAuth2 e chaves de API.',
-        'Construo pipelines de ETL e scripts de automação em Python na AWS.',
-        'Implemento pipelines de CI/CD com CircleCI e testes automatizados.',
-        'Desenvolvo e mantenho suítes de testes end-to-end com Playwright.',
-        'Aplico desenvolvimento orientado a especificação — estruturando requisitos e critérios de aceite antes da implementação, para entregas previsíveis e rastreáveis.',
+        'Desenvolvo e mantenho softwares e APIs com TypeScript, JavaScript e NestJS.',
+        'Desenvolvo soluções de automação e scripts em Python e Shell Script (Bash), otimizando processos e tarefas operacionais.',
+        'Desenvolvo e mantenho pipelines de ETL com Python e serviços AWS.',
+        'Participo do desenvolvimento, da configuração e da administração de soluções em ambientes AWS.',
+        'Implemento e mantenho pipelines de CI/CD e testes automatizados.',
+        'Desenvolvo e mantenho testes end-to-end com Playwright.',
+        'Desenvolvo soluções de monitoramento e observabilidade com New Relic.',
+        'Aplico Spec-Driven Development, estruturando requisitos, critérios de aceite e casos de uso antes da implementação.',
+        'Desenvolvo e mantenho soluções executadas em ambientes Linux, incluindo automações e serviços backend.',
+        'Exploro ferramentas de IA e LLMs, incluindo Claude Code, aplicadas ao desenvolvimento, automação, documentação e depuração de software.',
       ],
       achievements: [
         {
